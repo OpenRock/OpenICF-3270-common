@@ -25,19 +25,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.forgerock.openicf.connectors</groupId>
-        <artifactId>connectors-parent</artifactId>
-        <version>1.1.1.0</version>
+        <groupId>org.forgerock.openicf.framework</groupId>
+        <artifactId>framework</artifactId>
+        <version>1.5.0.0-SNAPSHOT</version>
     </parent>
-    <groupId>org.forgerock.openicf.connectors.mainframe</groupId>
+    <groupId>org.forgerock.openicf.misc</groupId>
     <artifactId>3270common</artifactId>
-    <packaging>jar</packaging>
+    <version>1.1.0.0-SNAPSHOT</version>
+    <packaging>bundle</packaging>
     <name>IBM 3270 Terminal Common</name>
     <description>IBM 3270 Terminal Common Library</description>
     <url>http://openicf.forgerock.org/connectors/3270common</url>
     <properties>
-        <skipTests>false</skipTests>
-        <contracts.skip>true</contracts.skip>
+        <source.version>1.7</source.version>
+        <target.version>1.7</target.version>
+        <framework.version>1.1.2.0</framework.version>
     </properties>
     <repositories>
         <repository>
@@ -58,22 +60,47 @@
         </repository>
     </repositories>
     <dependencies>
-        <!--
-        Download from http://expect4j.googlecode.com/files/expect4j-1.0.jar
-        mvn install:install-file -Dfile=expect4j-1.0.jar -DgroupId=com.google.p.expect4j -DartifactId=expect4j -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true -DcreateChecksum=true
-        -->
         <dependency>
-            <groupId>com.google.p.expect4j</groupId>
-            <artifactId>expect4j</artifactId>
-            <version>1.0</version>
-            <!--scope>system</scope>
-            <systemPath>${basedir}/lib/expect4j-1.0.jar</systemPath-->
+            <groupId>org.forgerock.openicf.framework</groupId>
+            <artifactId>connector-framework</artifactId>
+            <version>${framework.version}</version>
         </dependency>
         <dependency>
-            <groupId>oro</groupId>
-            <artifactId>oro</artifactId>
-            <version>2.0.8</version>
+            <groupId>com.github.cverges</groupId>
+            <artifactId>expect4j</artifactId>
+            <version>1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.servicemix.bundles</groupId>
+            <artifactId>org.apache.servicemix.bundles.oro</artifactId>
+            <version>2.0.8_6</version>
+        </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.forgerock.openicf.framework</groupId>
+            <artifactId>connector-framework-internal</artifactId>
+            <version>${framework.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

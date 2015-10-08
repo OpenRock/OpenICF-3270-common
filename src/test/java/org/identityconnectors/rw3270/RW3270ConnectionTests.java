@@ -127,13 +127,13 @@ public class RW3270ConnectionTests {
                 AssertJUnit.fail("no error thrown");
             } catch (IllegalArgumentException e) {
             }
-            sendRelease((DummyConnection)connection, "USER=IDM03");
+            sendRelease(connection, "USER=IDM03");
             connection.waitFor("USER=IDM03");
-            sendRelease((DummyConnection)connection, "USER=", "IDM03");
+            sendRelease(connection, "USER=", "IDM03");
             connection.waitFor("USER=", "IDM03");
-            sendRelease((DummyConnection)connection, "USER=IDM03");
+            sendRelease(connection, "USER=IDM03");
             connection.waitFor("USER=IDM03", 3000);
-            sendRelease((DummyConnection)connection, "USER=", "IDM03");
+            sendRelease(connection, "USER=", "IDM03");
             connection.waitFor("USER=", "IDM03", 3000);
         } catch (Exception e) {
             e.printStackTrace();
@@ -306,8 +306,7 @@ public class RW3270ConnectionTests {
             _ioPair.reset();
         }
 
-        @Test
-		public void test() {
+        public void test() {
         }
     }
 
